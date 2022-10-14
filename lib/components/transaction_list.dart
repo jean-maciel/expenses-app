@@ -41,32 +41,37 @@ class TransactionList extends StatelessWidget {
                 elevation: 5,
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.purple,
-                    radius: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: FittedBox(
-                          child: Text(
-                        'R\$${tr.value.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      )),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.purple,
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: FittedBox(
+                            child: Text(
+                          'R\$${tr.value.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        )),
+                      ),
                     ),
-                  ),
-                  title: Text(
-                    tr.title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  subtitle: Text(DateFormat('d MMM, y').format(tr.date)),
-                  trailing: IconButton(
-                      onPressed: () => onRemove(tr.id),
-                      icon: Icon(
-                        Icons.delete,
-                        color: Theme.of(context).errorColor,
-                      )),
-                ),
+                    title: Text(
+                      tr.title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    subtitle: Text(DateFormat('d MMM, y').format(tr.date)),
+                    trailing: MediaQuery.of(context).size.width > 400
+                        ? TextButton.icon(
+                            onPressed: () => onRemove(tr.id),
+                            icon: Icon(Icons.delete),
+                            label: Text('Excluir'),
+                          )
+                        : IconButton(
+                            onPressed: () => onRemove(tr.id),
+                            icon: Icon(
+                              Icons.delete,
+                              color: Theme.of(context).errorColor,
+                            ))),
               );
             },
           );
